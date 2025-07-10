@@ -1,0 +1,295 @@
+//RAILWAY PASS REGISTRATION PAGE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RailPass Registration - Join Us</title>
+<style>
+  :root {
+    --main-gradient: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    --card-bg: rgba(255 255 255 / 0.12);
+    --input-bg: rgba(255 255 255 / 0.18);
+    --input-focus-bg: rgba(255 255 255 / 0.38);
+    --text-light: #e0e6f3;
+    --highlight: #ffd700;
+    --border-radius: 10px;
+    --error-color: #ff5555;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--main-gradient);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  .container {
+    background: var(--card-bg);
+    padding: 2rem 2.5rem;
+    border-radius: var(--border-radius);
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+    color: var(--highlight);
+    letter-spacing: 1.5px;
+  }
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 1.1rem 1.8rem;
+  }
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 0.55rem 1rem;
+    border-radius: var(--border-radius);
+    border: none;
+    background: var(--input-bg);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    resize: vertical;
+  }
+  input::placeholder, textarea::placeholder {
+    color: #bbb;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    background: var(--input-focus-bg);
+  }
+  textarea {
+    min-height: 90px;
+  }
+  .full-span {
+    grid-column: 1 / -1;
+  }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  button[type="submit"] {
+    grid-column: 1 / -1;
+    padding: 1.1rem 0;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background: var(--highlight);
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    color: #222;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  button[type="submit"]:hover {
+    background: #ffea00;
+    transform: scale(1.05);
+  }
+  .error-msg {
+    grid-column: 1 / -1;
+    font-size: 0.85rem;
+    color: var(--error-color);
+    display: none;
+  }
+  @media (max-width: 480px) {
+    .container {
+      padding: 1.2rem 1.8rem;
+      max-height: 95vh;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Join RailPass Today</h2>
+    <form id="railRegistration" novalidate>
+      <label for="user-fullname">Full Name *</label>
+      <input type="text" id="user-fullname" name="user-fullname"
+placeholder="Alex Johnson" required />
+
+      <label for="user-email">Email *</label>
+      <input type="email" id="user-email" name="user-email"
+placeholder="alex@example.com" required />
+
+      <label for="user-password">Create Password *</label>
+      <input type="password" id="user-password" name="user-password"
+placeholder="Minimum 8 characters" minlength="8" required />
+
+      <label for="user-password-confirm">Confirm Password *</label>
+      <input type="password" id="user-password-confirm"
+name="user-password-confirm" placeholder="Re-enter password" required
+/>
+
+      <label for="dob">Date of Birth *</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label for="contact-number">Contact Number *</label>
+      <input type="tel" id="contact-number" name="contact-number"
+placeholder="+1 123 456 7890" pattern="^\+?[0-9\s\-]{7,15}$" required
+/>
+
+      <label for="national-id">Government ID Number *</label>
+      <input type="text" id="national-id" name="national-id"
+placeholder="ID or Passport Number" required />
+
+      <label for="coach-type">Preferred Coach Type *</label>
+      <select id="coach-type" name="coach-type" required>
+        <option value="" disabled selected>Select coach type</option>
+        <option>Sleeper</option>
+        <option>Seating</option>
+        <option>AC Coach</option>
+        <option>Non-AC Coach</option>
+        <option>Luxury Coach</option>
+      </select>
+
+      <label for="travel-time">Preferred Travel Time *</label>
+      <select id="travel-time" name="travel-time" required>
+        <option value="" disabled selected>Select time slot</option>
+        <option>Early Morning (5AM - 9AM)</option>
+        <option>Late Morning (9AM - 12PM)</option>
+        <option>Afternoon (12PM - 4PM)</option>
+        <option>Evening (4PM - 8PM)</option>
+        <option>Night (8PM - 12AM)</option>
+        <option>Late Night (12AM - 5AM)</option>
+      </select>
+
+      <label for="luggage-preference">Luggage Preference *</label>
+      <select id="luggage-preference" name="luggage-preference" required>
+        <option value="" disabled selected>Select luggage option</option>
+        <option>Light (1 bag or less)</option>
+        <option>Moderate (2-3 bags)</option>
+        <option>Heavy (4+ bags)</option>
+      </select>
+
+      <label for="frequent-route">Frequent Route (Optional)</label>
+      <input type="text" id="frequent-route" name="frequent-route"
+placeholder="e.g., Chicago - New York" />
+
+      <label for="seat-pref">Seat Preference *</label>
+      <select id="seat-pref" name="seat-pref" required>
+        <option value="" disabled selected>Select seat type</option>
+        <option>Window</option>
+        <option>Aisle</option>
+        <option>Middle</option>
+      </select>
+
+      <label for="travel-companion">Preferred Travel Companion *</label>
+      <select id="travel-companion" name="travel-companion" required>
+        <option value="" disabled selected>Select companion type</option>
+        <option>Quiet</option>
+        <option>Chatty</option>
+        <option>No Preference</option>
+      </select>
+
+      <label>Accessibility Needs (Choose all that apply)</label>
+      <div class="checkbox-row full-span" style="flex-wrap: wrap; gap: 1rem;">
+        <label><input type="checkbox" name="accessibility"
+value="Visual Assistance" /> Visual Assistance</label>
+        <label><input type="checkbox" name="accessibility"
+value="Hearing Assistance" /> Hearing Assistance</label>
+        <label><input type="checkbox" name="accessibility"
+value="Wheelchair Access" /> Wheelchair Access</label>
+        <label><input type="checkbox" name="accessibility" value="Sign
+Language Support" /> Sign Language Support</label>
+        <label><input type="checkbox" name="accessibility"
+value="Other" /> Other</label>
+      </div>
+
+      <label for="pet-travel">Traveling With Pet? *</label>
+      <select id="pet-travel" name="pet-travel" required>
+        <option value="" disabled selected>Select an option</option>
+        <option>No</option>
+        <option>Yes - Dog</option>
+        <option>Yes - Cat</option>
+        <option>Yes - Other</option>
+      </select>
+
+      <label for="payment-method">Preferred Payment Method *</label>
+      <select id="payment-method" name="payment-method" required>
+        <option value="" disabled selected>Select payment method</option>
+        <option>Credit/Debit Card</option>
+        <option>Mobile Wallet</option>
+        <option>Bank Transfer</option>
+        <option>Cash at Counter</option>
+      </select>
+
+      <label for="emergency-contact-name">Emergency Contact Name *</label>
+      <input type="text" id="emergency-contact-name"
+name="emergency-contact-name" placeholder="Full Name" required />
+
+      <label for="emergency-contact-phone">Emergency Contact Phone *</label>
+      <input type="tel" id="emergency-contact-phone"
+name="emergency-contact-phone" placeholder="+1 234 567 8901"
+pattern="^\+?[0-9\s\-]{7,15}$" required />
+
+      <label for="notification-prefs">Notification Preferences</label>
+      <div class="checkbox-row full-span" style="flex-wrap: wrap; gap: 1rem;">
+        <label><input type="checkbox" name="notifications"
+value="Delays" /> Train Delays & Updates</label>
+        <label><input type="checkbox" name="notifications"
+value="Promotions" /> Exclusive Promotions</label>
+        <label><input type="checkbox" name="notifications"
+value="TravelTips" /> Travel Tips</label>
+      </div>
+
+      <div class="checkbox-row full-span">
+        <input type="checkbox" id="agree-terms" name="agree-terms" required />
+        <label for="agree-terms">I accept RailPass’s Terms and Privacy
+Policy *</label>
+      </div>
+
+      <div class="checkbox-row full-span">
+        <input type="checkbox" id="app-download" name="app-download" />
+        <label for="app-download">Send me a link to download the
+RailPass mobile app</label>
+      </div>
+
+      <label for="additional-notes" class="full-span">Additional
+Information (Optional)</label>
+      <textarea id="additional-notes" name="additional-notes"
+placeholder="Anything else you'd like us to know..."></textarea>
+
+      <button type="submit" aria-label="Complete
+Registration">Register Now</button>
+      <div class="error-msg" id="password-error"
+role="alert">Passwords do not match.</div>
+    </form>
+  </div>
+
+  <script>
+    const railForm = document.getElementById('railRegistration');
+    const pwd = railForm['user-password'];
+    const confirmPwd = railForm['user-password-confirm'];
+    const pwdError = document.getElementById('password-error');
+
+    railForm.addEventListener('submit', e => {
+      pwdError.style.display = 'none';
+      if (pwd.value !== confirmPwd.value) {
+        e.preventDefault();
+        pwdError.style.display = 'block';
+        confirmPwd.focus();
+      }
+    });
+  </script>
+</body>
+</html>
